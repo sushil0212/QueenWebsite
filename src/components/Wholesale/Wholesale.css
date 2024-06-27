@@ -1,0 +1,25 @@
+.Wholesale{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 90vh;
+}
+.Wholesale h2{
+    display: flexbox;
+    flex-direction: column;
+    color: yellowgreen;
+    font-size: 20px;
+    font-weight: 300;
+}
+.Wholesale hr{
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+}
+.Wholesale-item{
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+}

@@ -1,0 +1,11 @@
+.shopcategory-banner{
+    display: flex;
+    margin: 30px auto;
+    width: 82%;
+}
+.shopcategory-products{
+    margin: 20px 170px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 80px;
+}

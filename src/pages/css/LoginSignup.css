@@ -1,0 +1,101 @@
+/* Updated CSS */
+.loginsignup {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loginsignup-container {
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px 80px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .loginsignup-container:hover {
+    transform: translateY(-10px);
+  }
+  
+  .loginsignup-container h1 {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    color: #333;
+  }
+  
+  .loginsignup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .loginsignup-fields input {
+    height: 50px;
+    width: 100%;
+    padding: 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    color: #333;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s;
+  }
+  
+  .loginsignup-fields input:focus {
+    border: 1px solid #72EDF2;
+  }
+  
+  .loginsignup-container button {
+    width: 107%;
+    height: 50px;
+    color: #fff;
+    background: green;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .loginsignup-container button:hover {
+    background: #4040d4;
+    transform: translateY(-5px);
+  }
+  
+  .loginsignup-login {
+    margin-top: 15px;
+    color: #666;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .loginsignup-login span {
+    color: #5be551;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .loginsignup-agree {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+    color: #666;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .loginsignup-agree input {
+    width: 20px;
+    height: 20px;
+  }
+  
