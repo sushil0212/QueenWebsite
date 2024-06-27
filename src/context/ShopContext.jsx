@@ -13,14 +13,14 @@ const ShopContextProvider = (props) => {
   const [usedEmails, setUsedEmails] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5005/products')
+    axios.get('https://cosmetics-server-s0rb.onrender.com/products')
       .then(response => setAllProducts(response.data))
       .catch(error => {
         console.error('Error fetching products:', error);
         setError('Failed to fetch products. Please try again later.');
       });
 
-    axios.get('http://localhost:5005/cart')
+    axios.get('https://cosmetics-server-s0rb.onrender.com/cart')
       .then(response => setCartItems(response.data))
       .catch(error => {
         console.error('Error fetching cart items:', error);
@@ -32,8 +32,8 @@ const ShopContextProvider = (props) => {
     const emailRecord = usedEmails.find(record => record.email === email);
     const now = new Date();
     if (emailRecord) {
-      const tenDaysInMilliseconds = 10 * 24 * 60 * 60 * 1000;
-      if (now - new Date(emailRecord.date) < tenDaysInMilliseconds) {
+      const tenDays = 10 * 24 * 60 * 60 * 1000;
+      if (now - new Date(emailRecord.date) < tenDays) {
         alert('You have already used this email address for a discount. Please try again after 10 days.');
         return false;
       }
@@ -89,7 +89,7 @@ const ShopContextProvider = (props) => {
     setCartItems(updatedCartItems);
 
     try {
-      await axios.post('http://localhost:5005/cart', { itemId, purchaseMode, amount: isWholesale ? 6 : 1 });
+      await axios.post('https://cosmetics-server-s0rb.onrender.com/cart', { itemId, purchaseMode, amount: isWholesale ? 6 : 1 });
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
@@ -108,7 +108,7 @@ const ShopContextProvider = (props) => {
     setCartItems(updatedCartItems);
 
     try {
-      await axios.delete(`http://localhost:5005/cart/${itemId}`, { data: { purchaseMode } });
+      await axios.delete(`https://cosmetics-server-s0rb.onrender.com/cart/${itemId}`, { data: { purchaseMode } });
     } catch (error) {
       console.error('Error removing from cart:', error);
     }
@@ -124,7 +124,7 @@ const ShopContextProvider = (props) => {
     setCartItems(updatedCartItems);
 
     try {
-      await axios.put(`http://localhost:5005/cart/${itemId}`, { purchaseMode, amount });
+      await axios.put(`https://cosmetics-server-s0rb.onrender.com/cart/${itemId}`, { purchaseMode, amount });
     } catch (error) {
       console.error('Error updating cart item:', error);
     }

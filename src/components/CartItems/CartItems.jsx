@@ -43,9 +43,7 @@ const CartItems = () => {
   };
 
   const handleFinalPurchase = () => {
-    // Implement your final purchase logic here
     console.log('Final purchase initiated');
-    // Example: Redirect to checkout page or execute payment process
   };
 
   return (
