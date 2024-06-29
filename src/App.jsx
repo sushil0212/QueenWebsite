@@ -12,6 +12,7 @@ import hair_banner from "./components/images/banner_hair.png";
 import professional_banner from "./components/images/banner_professional.png";
 import Homepage from "./pages/HomePage";
 import ShopContextProvider from "./context/ShopContext";
+import Game from "./pages/Game";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
+          <Route path="/game" element={<Game />} />
         </Routes>
         <Footer />
       </Router>

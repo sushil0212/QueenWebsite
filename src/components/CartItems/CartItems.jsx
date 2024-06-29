@@ -12,23 +12,23 @@ const CartItems = () => {
     getDiscountTotal,
     getTotalCartItems,
     isNewUser,
-    setIsNewUser
+    setIsNewUser,
+    discount // Include discount from context
   } = useContext(ShopContext);
 
   const [subtotal, setSubtotal] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const cartSubtotal = getCartSubtotal();
     const discountTotal = getDiscountTotal();
-    const totalItems = getTotalCartItems();
 
     setSubtotal(cartSubtotal);
-    setDiscount(discountTotal);
+    setDiscountAmount(discountTotal);
     setTotal(cartSubtotal - discountTotal);
 
-    if (totalItems > 0) {
+    if (getTotalCartItems() > 0) {
       setIsNewUser(true);
     } else {
       setIsNewUser(false);
@@ -95,11 +95,11 @@ const CartItems = () => {
             </div>
             <div className="cartitems-total-item">
               <p>Discount</p>
-              <p>€{discount.toFixed(2)}</p>
+              <p>€{discountAmount.toFixed(2)}</p>
             </div>
             <div className="cartitems-total-item">
               <h2>Total</h2>
-              <h2>€{total.toFixed(2)}</h2>
+              <h2>€{(total > 0 ? total : 0).toFixed(2)}</h2>
             </div>
           </div>
           <button onClick={handleFinalPurchase}>FINAL PURCHASE</button>

@@ -1,0 +1,15 @@
+/* components/Game/Game.css */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .game-iframe {
+    width: 80%;
+    height: 600px;
+    border: none;
+    margin-bottom: 10px;
+  }
+  

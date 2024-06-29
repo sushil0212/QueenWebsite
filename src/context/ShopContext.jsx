@@ -4,6 +4,7 @@ import axios from 'axios';
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
+  // State declarations
   const [cartItems, setCartItems] = useState([]);
   const [isWholesale, setIsWholesale] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -11,16 +12,18 @@ const ShopContextProvider = (props) => {
   const [isNewUser, setIsNewUser] = useState(true);
   const [discountedCount, setDiscountedCount] = useState(0);
   const [usedEmails, setUsedEmails] = useState([]);
+  const [discount, setDiscount] = useState(0);
 
+  // Fetch initial data on component mount
   useEffect(() => {
-    axios.get('https://cosmetics-server-s0rb.onrender.com/products')
+    axios.get('https://cosmetics-server-nu.vercel.app/products')
       .then(response => setAllProducts(response.data))
       .catch(error => {
         console.error('Error fetching products:', error);
         setError('Failed to fetch products. Please try again later.');
       });
 
-    axios.get('https://cosmetics-server-s0rb.onrender.com/cart')
+    axios.get('https://cosmetics-server-nu.vercel.app/cart')
       .then(response => setCartItems(response.data))
       .catch(error => {
         console.error('Error fetching cart items:', error);
@@ -31,6 +34,7 @@ const ShopContextProvider = (props) => {
   const handleUserSignUp = (name, email, password) => {
     const emailRecord = usedEmails.find(record => record.email === email);
     const now = new Date();
+
     if (emailRecord) {
       const tenDays = 10 * 24 * 60 * 60 * 1000;
       if (now - new Date(emailRecord.date) < tenDays) {
@@ -49,6 +53,7 @@ const ShopContextProvider = (props) => {
     return true;
   };
 
+  
   const addToCart = async (itemId) => {
     const newItem = allProducts.find(product => product.id === itemId);
     if (!newItem) return;
@@ -72,6 +77,9 @@ const ShopContextProvider = (props) => {
         price *= 0.95;
         setDiscountedCount(prevCount => prevCount + 1);
         discounted = true;
+      } else if (!isWholesale && discount > 0) {
+        price *= (1 - discount / 100);
+        discounted = true;
       }
 
       const product = {
@@ -89,12 +97,13 @@ const ShopContextProvider = (props) => {
     setCartItems(updatedCartItems);
 
     try {
-      await axios.post('https://cosmetics-server-s0rb.onrender.com/cart', { itemId, purchaseMode, amount: isWholesale ? 6 : 1 });
+      await axios.post('https://cosmetics-server-nu.vercel.app/cart', { itemId, purchaseMode, amount: isWholesale ? 6 : 1 });
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
   };
 
+  
   const removeFromCart = async (itemId, purchaseMode) => {
     const updatedCartItems = cartItems.map(product => {
       if (product.id === itemId && product.purchaseMode === purchaseMode) {
@@ -103,36 +112,35 @@ const ShopContextProvider = (props) => {
         if (product.amount <= 0) return null;
       }
       return product;
-    }).filter(product => product !== null);
+    }).filter(Boolean);
 
     setCartItems(updatedCartItems);
 
     try {
-      await axios.delete(`https://cosmetics-server-s0rb.onrender.com/cart/${itemId}`, { data: { purchaseMode } });
+      await axios.delete(`https://cosmetics-server-nu.vercel.app/cart/${itemId}/${purchaseMode}`);
     } catch (error) {
       console.error('Error removing from cart:', error);
     }
   };
 
-  const updateCartItem = async (itemId, purchaseMode, amount) => {
-    const updatedCartItems = cartItems.map(product =>
-      product.id === itemId && product.purchaseMode === purchaseMode
-        ? { ...product, amount }
-        : product
-    );
+
+  const updateCartItem = (itemId, purchaseMode, newAmount) => {
+    const updatedCartItems = cartItems.map(product => {
+      if (product.id === itemId && product.purchaseMode === purchaseMode) {
+        product.amount = newAmount;
+      }
+      return product;
+    }).filter(product => product.amount > 0);
 
     setCartItems(updatedCartItems);
 
     try {
-      await axios.put(`https://cosmetics-server-s0rb.onrender.com/cart/${itemId}`, { purchaseMode, amount });
+      axios.put('https://cosmetics-server-nu.vercel.app/cart', { itemId, purchaseMode, amount: newAmount });
     } catch (error) {
       console.error('Error updating cart item:', error);
     }
   };
 
-  const getTotalCartItems = () => {
-    return cartItems.reduce((total, item) => total + item.amount, 0);
-  };
 
   const getCartSubtotal = () => {
     return cartItems.reduce((subtotal, item) => {
@@ -142,35 +150,53 @@ const ShopContextProvider = (props) => {
   };
 
   const getDiscountTotal = () => {
-    return cartItems.reduce((discount, item) => {
+    return cartItems.reduce((total, item) => {
       if (item.discounted) {
-        const originalPrice = item.price / 0.95;
-        const discountAmount = (originalPrice - item.price) * item.amount;
-        return discount + discountAmount;
+        if (isNewUser && !isWholesale) {
+          return total + (item.price * 0.05 * item.amount); // 5% discount for new users up to 5 items
+        } else if (!isWholesale && discount > 0) {
+          return total + ((item.price / (1 - discount / 100)) * (discount / 100) * item.amount); // Game discount calculation
+        }
       }
-      return discount;
+      return total;
     }, 0);
   };
 
-  const contextValue = {
-    allProducts,
+  const getTotalCartItems = () => {
+    return cartItems.reduce((total, item) => total + item.amount, 0);
+  };
+
+  const applyDiscount = (discountPercentage) => {
+    setDiscount(discountPercentage);
+  };
+
+  const contextValues = {
     cartItems,
     addToCart,
     removeFromCart,
-    updateCartItem, 
-    getTotalCartItems,
+    updateCartItem,
     getCartSubtotal,
     getDiscountTotal,
+    getTotalCartItems,
     isWholesale,
     setIsWholesale,
+    allProducts,
+    setAllProducts,
+    error,
+    setError,
+    handleUserSignUp,
     isNewUser,
     setIsNewUser,
-    handleUserSignUp,
-    error,
+    discountedCount,
+    setDiscountedCount,
+    usedEmails,
+    setUsedEmails,
+    discount,
+    applyDiscount
   };
 
   return (
-    <ShopContext.Provider value={contextValue}>
+    <ShopContext.Provider value={contextValues}>
       {props.children}
     </ShopContext.Provider>
   );

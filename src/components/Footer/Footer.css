@@ -1,7 +1,7 @@
 .footer {
     background: #2c3e50;
     color: #ecf0f1;
-    padding: 30px 0; /* Reduced padding to decrease height */
+    padding: 30px 0;
     text-align: center;
   }
   
@@ -9,8 +9,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    align-items: center; /* Center the content vertically */
-    justify-items: center; /* Center the content horizontally */
+    align-items: center; 
+    justify-items: center;
     padding: 0 20px;
   }
   
