@@ -1,0 +1,45 @@
+.homepage {
+    padding-top: 80px; /* Adjust according to navbar height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .category-banners {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px; /* Adjust maximum width as needed */
+    margin: 20px auto;
+  }
+  
+  .category-banners a {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-banners img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-banners a:hover img {
+    transform: scale(1.05);
+  }
+  
+  @media (min-width: 768px) {
+    .category-banners {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .category-banners a {
+      width: calc(50% - 20px); /* Adjust width of each banner item */
+    }
+  }
+  

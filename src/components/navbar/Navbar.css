@@ -1,76 +1,90 @@
-.navbar{
-    display: flex;
-    justify-content: space-around;
-    padding: 16px;
-    box-shadow: 0 1px 3px -2px black;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
-.nav-logo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
 
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #171717;
+  font-size: 24px;
+  font-weight: 600;
 }
-.nav-logo p{
-    color: #171717;
-    font-size: 38px;
-    font-weight: 600;
-}
-.nav-menu{
-display: flex;
-align-items: center;
-list-style: none;
-gap: 50px;
-color: #626262;
-font-size: 20px;
-font-weight: 500;
-}
-.nav-menu li{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    cursor: pointer;
-}
-.nav-menu hr{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: green;
 
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.nav-login-cart{
-    display: flex;
-    align-items: center;
-    gap: 45px;
-}
-.nav-login-cart button{
-    width: 157px;
-    height: 589x;
-    outline: none;
-    border: 1px solid #7a7a7a;
-    border-radius: 75px;
-    color: #515151;
-    font-size: 20px;
-    font-weight: 500;
-    background: white;
-    cursor: pointer;
-}
-.nav-login-cart button:active{
-    background: #51515109;
-}
-.nav-cart-count{
-    width: 22px;
-    height: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -35px;
-    margin-left: -55px;
-    border-radius: 11px;
-    font-size: 14px;
-    background: red;
-    color: white;
 
+.nav-menu li {
+  margin: 0 12px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #626262;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #333;
+}
+
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* Ensure relative positioning for absolute child */
+}
+
+.nav-login-cart img {
+  height: 28px;
+}
+
+.nav-cart-count {
+  position: absolute;
+  top: -8px; /* Adjust as needed */
+  right: -8px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+}
+
+.nav-login-cart button {
+  padding: 8px 16px;
+  border: 1px solid #7a7a7a;
+  border-radius: 24px;
+  background-color: white;
+  color: #515151;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-login-cart button:hover {
+  background-color: #f0f0f0;
+  color: #333;
 }

@@ -97,5 +97,9 @@
   .loginsignup-agree input {
     width: 20px;
     height: 20px;
+    
+
   }
-  
+  .loginsignup-agree p{
+    font-size: 12px;
+  }

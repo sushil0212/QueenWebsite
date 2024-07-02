@@ -11,14 +11,15 @@ const CartItems = () => {
     getCartSubtotal,
     getDiscountTotal,
     getTotalCartItems,
-    isNewUser,
     setIsNewUser,
-    discount // Include discount from context
+    discount,
+    clearCart // Add clearCart from context
   } = useContext(ShopContext);
 
   const [subtotal, setSubtotal] = useState(0);
   const [discountAmount, setDiscountAmount] = useState(0);
   const [total, setTotal] = useState(0);
+  const [showMessage, setShowMessage] = useState(false); // New state for showing the message
 
   useEffect(() => {
     const cartSubtotal = getCartSubtotal();
@@ -43,7 +44,11 @@ const CartItems = () => {
   };
 
   const handleFinalPurchase = () => {
-    console.log('Final purchase initiated');
+    clearCart(); // Clear the cart
+    setShowMessage(true); // Show the message
+    setTimeout(() => {
+      setShowMessage(false); // Hide the message after 2 seconds
+    }, 2000);
   };
 
   return (
@@ -90,12 +95,12 @@ const CartItems = () => {
           <h1>Cart Totals</h1>
           <div>
             <div className="cartitems-total-item">
-              <p>Subtotal</p>
-              <p>€{subtotal.toFixed(2)}</p>
+              <h2>Subtotal</h2>
+              <h2>€{subtotal.toFixed(2)}</h2>
             </div>
             <div className="cartitems-total-item">
-              <p>Discount</p>
-              <p>€{discountAmount.toFixed(2)}</p>
+              <h2>Discount</h2>
+              <h2>€{discountAmount.toFixed(2)}</h2>
             </div>
             <div className="cartitems-total-item">
               <h2>Total</h2>
@@ -105,6 +110,12 @@ const CartItems = () => {
           <button onClick={handleFinalPurchase}>FINAL PURCHASE</button>
         </div>
       </div>
+      {showMessage && (
+        <div className="congrats-message">
+          <h2>CONGRATULATIONS! HAPPY SHOPPING!</h2>
+          <div className="party-popper">🎉🎉🎉</div>
+        </div>
+      )}
     </div>
   );
 };

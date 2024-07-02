@@ -13,6 +13,10 @@ import professional_banner from "./components/images/banner_professional.png";
 import Homepage from "./pages/HomePage";
 import ShopContextProvider from "./context/ShopContext";
 import Game from "./pages/Game";
+import SalesCondition from "./components/Footer/SalesCondition";
+import AboutUs from "./components/Footer/AboutUs";
+import ContactUs from "./components/Footer/ContactUs";
+import TermsConditions from "./components/Footer/TermsConditions";
 
 function App() {
   return (
@@ -29,6 +33,10 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/game" element={<Game />} />
+          <Route path="/sales-condition" element={<SalesCondition />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
         <Footer />
       </Router>

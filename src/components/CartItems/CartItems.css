@@ -1,73 +1,61 @@
 .cartitems {
-    margin: 50px auto;
-    padding: 30px;
+    margin: 100px auto; /* Reduce margin for better spacing */
+    padding: 20px; /* Reduce padding for compactness */
     max-width: 1200px;
     background-color: yellowgreen;
     border-radius: 20px;
-    color: #eaeaea;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: #f1f7fa;
+    box-shadow: 0 10px 25px rgba(209, 80, 80, 0.2);
 }
 
 .cartitems hr {
     height: 2px;
-    background: #444;
+    background: #eb0909;
     border: none;
-    margin: 20px 0;
+    margin: 10px 0; /* Reduce margin */
 }
 
-.cartitems-format-main {
-    display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 0;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
+.cartitems-format-main,
 .cartitems-format {
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    gap: 20px;
-    font-size: 18px;
-    font-weight: 500;
+    gap: 10px;
+    font-size: 14px; /* Adjust font size */
 }
 
 .carticon-product-icon {
-    height: 70px;
+    height: 60px; /* Reduce height */
     border-radius: 10px;
 }
 
 .cartitems-remove-icon {
-    width: 20px;
+    width: 18px; /* Reduce width */
     cursor: pointer;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .cartitems-remove-icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.1); /* Slightly reduce scale */
     opacity: 0.7;
 }
 
 .cartitems-quantity {
-    width: 70px;
-    height: 40px;
+    width: 60px;
+    height: 30px; /* Reduce height */
     border: 2px solid #ccc;
     background: #2a2a3e;
     color: #fff;
-    border-radius: 10px;
+    border-radius: 8px;
     text-align: center;
-    line-height: 40px;
-    font-size: 16px;
+    line-height: 30px; /* Adjust line height */
+    font-size: 14px; /* Adjust font size */
 }
 
 .cartitems-down {
     display: flex;
     justify-content: center;
-    margin: 80px 0;
+    margin: 40px 0; /* Reduce margin */
 }
 
 .cartitems-total {
@@ -77,43 +65,68 @@
     flex-direction: column;
     background-color: #222;
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px; /* Reduce padding */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .cartitems-total h1 {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduce margin */
     text-align: center;
     color: orange;
+    font-size: 20px; /* Adjust font size */
 }
 
 .cartitems-total-item {
     display: flex;
     justify-content: space-between;
-    padding: 15px 0;
-    font-size: 18px;
+    padding: 10px 0; /* Reduce padding */
+    font-size: 16px; /* Adjust font size */
 }
 
 .cartitems-total hr {
-    background: lightgoldenrodyellow;
+    background: rgb(195, 195, 27);
 }
 
 .cartitems-total button {
     width: 100%;
-    height: 50px;
-    margin-top: 30px;
+    height: 40px; /* Reduce height */
+    margin-top: 20px; /* Reduce margin */
     outline: none;
     border: none;
     background: linear-gradient(45deg, yellow, #644cff);
-    color: #fff;
-    font-size: 18px;
+    color: #f1f3f6;
+    font-size: 16px; /* Adjust font size */
     font-weight: 700;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.5s ease, transform 0.5s ease;
 }
 
 .cartitems-total button:hover {
     background: linear-gradient(45deg, #ff7c4c, #099df3);
-    transform: scale(1.05);
+    transform: scale(1.05); /* Adjust scale */
+}
+
+.congrats-message {
+    text-align: center;
+    margin-top: 30px; /* Reduce margin */
+    font-size: 20px; /* Adjust font size */
+    color: #ff0000;
+    animation: fadeInOut 5s;
+}
+
+.party-popper {
+    font-size: 30px; /* Adjust font size */
+    animation: popperAnimation 5s;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes popperAnimation {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
 }

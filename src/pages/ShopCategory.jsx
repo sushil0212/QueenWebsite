@@ -1,13 +1,13 @@
+// ShopCategory.js
+
 import React, { useContext } from 'react';
 import './css/ShopCategory.css';
 import { ShopContext } from '../context/ShopContext';
 import Item from '../components/Item/Item';
+import BannerSlider from './BannerSlider'; // Import the BannerSlider component
 
 const ShopCategory = (props) => {
   const { allProducts, isWholesale, error } = useContext(ShopContext);
-
-  console.log('Props:', props);
-  console.log('All Products:', allProducts);
 
   if (error) {
     return <div className="error-message">{error}</div>;
@@ -15,6 +15,7 @@ const ShopCategory = (props) => {
 
   return (
     <div className='shop-category'>
+      {props.category === 'nails' && <BannerSlider />} {/* Display the BannerSlider only for Nails category */}
       <img className='shopcategory-banner' src={props.banner} alt="Category Banner" />
       <div className="shopcategory-products">
         {allProducts

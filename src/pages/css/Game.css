@@ -1,15 +1,22 @@
-/* components/Game/Game.css */
 .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .game-iframe {
-    width: 80%;
-    height: 600px;
-    border: none;
-    margin-bottom: 10px;
-  }
-  
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  width: 100%;
+  height: calc(110vh); /* Adjust for fixed header height */
+  padding-top: 20px; /* Add padding to separate from fixed header */
+  overflow: hidden; /* Hide any overflow content */
+}
+
+.game-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+p {
+  font-size: 30px;
+  margin: 10px 0;
+}

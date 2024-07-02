@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import instagram_icon from '../images/instagram_icon.png';
 import pintester_icon from '../images/pintester_icon.png';
@@ -9,12 +10,12 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-content">
         <div className="footer-column">
-          <ul className="footer-links">
+          <ul className="footer-links" >
             <h1>WHO WE ARE</h1>
-            <li>Sales Condition</li>
-            <li>Terms & Conditions</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
+            <li><Link style={{ textDecoration: 'none', color: 'white' }} to="/sales-condition">Sales Condition</Link></li>
+            <li><Link style={{ textDecoration: 'none', color: 'white' }} to="/terms-conditions">Terms & Conditions</Link></li>
+            <li><Link style={{ textDecoration: 'none', color: 'white'}} to="/about-us">About Us</Link></li>
+            <li><Link style={{ textDecoration: 'none', color: 'white' }} to="/contact-us">Contact Us</Link></li>
           </ul>
         </div>
         <div className="footer-column">

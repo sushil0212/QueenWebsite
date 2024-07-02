@@ -4,7 +4,6 @@ import axios from 'axios';
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
-  // State declarations
   const [cartItems, setCartItems] = useState([]);
   const [isWholesale, setIsWholesale] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -53,7 +52,6 @@ const ShopContextProvider = (props) => {
     return true;
   };
 
-  
   const addToCart = async (itemId) => {
     const newItem = allProducts.find(product => product.id === itemId);
     if (!newItem) return;
@@ -103,7 +101,6 @@ const ShopContextProvider = (props) => {
     }
   };
 
-  
   const removeFromCart = async (itemId, purchaseMode) => {
     const updatedCartItems = cartItems.map(product => {
       if (product.id === itemId && product.purchaseMode === purchaseMode) {
@@ -123,7 +120,6 @@ const ShopContextProvider = (props) => {
     }
   };
 
-
   const updateCartItem = (itemId, purchaseMode, newAmount) => {
     const updatedCartItems = cartItems.map(product => {
       if (product.id === itemId && product.purchaseMode === purchaseMode) {
@@ -141,7 +137,6 @@ const ShopContextProvider = (props) => {
     }
   };
 
-
   const getCartSubtotal = () => {
     return cartItems.reduce((subtotal, item) => {
       const price = item.purchaseMode === 'wholesale' ? item.price * 0.6 : item.price;
@@ -155,7 +150,7 @@ const ShopContextProvider = (props) => {
         if (isNewUser && !isWholesale) {
           return total + (item.price * 0.05 * item.amount); // 5% discount for new users up to 5 items
         } else if (!isWholesale && discount > 0) {
-          return total + ((item.price / (1 - discount / 100)) * (discount / 100) * item.amount); // Game discount calculation
+          return total + ((item.price / (1 - discount / 100)) * (discount / 100) * item.amount); // General discount calculation
         }
       }
       return total;
@@ -168,6 +163,15 @@ const ShopContextProvider = (props) => {
 
   const applyDiscount = (discountPercentage) => {
     setDiscount(discountPercentage);
+  };
+
+  const clearCart = async () => {
+    setCartItems([]);
+    try {
+      await axios.delete('https://cosmetics-server-nu.vercel.app/cart/clear');
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+    }
   };
 
   const contextValues = {
@@ -192,7 +196,8 @@ const ShopContextProvider = (props) => {
     usedEmails,
     setUsedEmails,
     discount,
-    applyDiscount
+    applyDiscount,
+    clearCart
   };
 
   return (

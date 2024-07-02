@@ -1,5 +1,6 @@
 // components/Homepage.jsx
 import React from 'react';
+import './HomePage.css';
 import { Link } from 'react-router-dom';
 import Wholesale from '../components/Wholesale/Wholesale';
 import nails_banner from '../components/images/banner_nails.png';
