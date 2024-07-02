@@ -1,0 +1,44 @@
+.random-products {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    background-color: antiquewhite;
+  }
+  
+  .random-products h2 {
+    margin-top: 0;
+  }
+  
+  .random-products-list {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .random-product-item {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .random-product-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .random-product-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .random-product-item h3 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+  }
+  
+  .random-product-item p {
+    margin: 0;
+  }
+  

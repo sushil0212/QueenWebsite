@@ -22,6 +22,8 @@ const Navbar = () => {
         <li><Link style={{ textDecoration: 'none' }} to='/professional'>Professional</Link></li>
         <li><Link style={{ textDecoration: 'none' }} to='/accessory'>Accessory</Link></li>
         <Link style={{ textDecoration: 'none' }} to="/game">Game</Link>
+
+
       </ul>
       <div className="nav-login-cart">
         <Link to='/login'><img src={profile_icon} alt='profile' /></Link>

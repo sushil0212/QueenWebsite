@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import ShopCategory from "./pages/ShopCategory";
@@ -17,12 +18,24 @@ import SalesCondition from "./components/Footer/SalesCondition";
 import AboutUs from "./components/Footer/AboutUs";
 import ContactUs from "./components/Footer/ContactUs";
 import TermsConditions from "./components/Footer/TermsConditions";
+import RandomProducts from "./components/RandomProducts/RandomProducts";
 
 function App() {
+  const [showRandomProducts, setShowRandomProducts] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowRandomProducts(true);
+    }, 30000); // 30 seconds timer
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ShopContextProvider>
       <Router>
         <Navbar />
+        {showRandomProducts && <RandomProducts />} {/* Show RandomProducts after 30 seconds */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/hair" element={<ShopCategory banner={hair_banner} category="hair" />} />
