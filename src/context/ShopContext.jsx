@@ -22,13 +22,29 @@ const ShopContextProvider = (props) => {
         setError('Failed to fetch products. Please try again later.');
       });
 
-    axios.get('https://cosmetics-server-nu.vercel.app/cart')
-      .then(response => setCartItems(response.data))
-      .catch(error => {
-        console.error('Error fetching cart items:', error);
-        setError('Failed to fetch cart items. Please try again later.');
-      });
+    // Check for existing session cart items
+    const savedCartItems = sessionStorage.getItem('cartItems');
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+    } else {
+      // Fetch cart items from server and clear them
+      axios.get('https://cosmetics-server-nu.vercel.app/cart')
+        .then(response => {
+          setCartItems(response.data);
+          // Clear the cart on component mount
+          clearCart();
+        })
+        .catch(error => {
+          console.error('Error fetching cart items:', error);
+          setError('Failed to fetch cart items. Please try again later.');
+        });
+    }
   }, []);
+
+  useEffect(() => {
+    // Persist cart items to session storage on cart change
+    sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleUserSignUp = (name, email, password) => {
     const emailRecord = usedEmails.find(record => record.email === email);
@@ -167,6 +183,7 @@ const ShopContextProvider = (props) => {
 
   const clearCart = async () => {
     setCartItems([]);
+    sessionStorage.removeItem('cartItems'); // Clear the session storage
     try {
       await axios.delete('https://cosmetics-server-nu.vercel.app/cart/clear');
     } catch (error) {

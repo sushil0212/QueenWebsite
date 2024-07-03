@@ -22,7 +22,7 @@ const RandomProducts = () => {
     const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
     setRandomProducts(shuffled.slice(0, 4));
   };
-
+  
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
     setShowRandomProducts(false); // Hide the entire component
